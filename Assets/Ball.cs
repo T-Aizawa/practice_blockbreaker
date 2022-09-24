@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour
 {
     public float speed = 1.0f;
     private Rigidbody myRigid;
+    public GameManager myManager;
 
     // Start is called before the first frame update
     void Start()
@@ -18,5 +19,14 @@ public class Ball : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Finish")
+        {
+            Destroy(this.gameObject);
+            myManager.GameOver();
+        }
     }
 }
